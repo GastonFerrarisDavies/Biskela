@@ -1,26 +1,19 @@
 
-import { InstagramCard } from './components/InstagramCard.jsx';
-import { WhatsappCard } from './components/WhatsappCard.jsx';
-import { Bienvenido } from './components/bienvenidoCard.jsx';
-import { Horarios } from './components/horariosCard.jsx';
-import { Circulos } from './components/circulosCard.jsx';
-import { Pedidos } from './components/pedidosCard.jsx';
+import { BrowserRouter as Router, Routes, Route, useNavigate } from 'react-router-dom';
+import Home from './pages/Home';
+import Cart from './pages/Cart';
 import './App.css'
 
 export function App() {
 
   return (
     <>
-    <div className="grid grid-cols-3 w-screen gap-2 p-2 h-[100vh] bg-gradient-to-b from-gebum-white to-gebum-gray">
-
-      <Bienvenido />
-      <Circulos />
-      <Horarios />
-      <InstagramCard />
-      <WhatsappCard />
-      <Pedidos />
-      
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<Cart />} />
+      </Routes>
+    </Router>
     </>
   )
 }
