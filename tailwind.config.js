@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/App.jsx", "./src/main.jsx"],
+  content: ["./index.html", "./src/App.jsx", "./src/main.jsx", "./src/components/bienvenidoCard.jsx", "./src/components/circulosCard.jsx", "./src/components/horariosCard.jsx", "./src/components/instagramCard.jsx", "./src/components/whatsappCard.jsx", "./src/components/pedidosCard.jsx"],
   theme: {
     extend: {
       fontFamily: {
