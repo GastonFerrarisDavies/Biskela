@@ -2,7 +2,3 @@
     fill: #E8D57B;
     transition: .3s;
 }
-
-.card-a:hover .svg {
-    fill: #d0d0d0;
-}
