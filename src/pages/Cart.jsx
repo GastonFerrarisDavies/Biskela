@@ -3,16 +3,16 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronDown, Search,ArrowLeftFromLine } from 'lucide-react'
 // Sample product data
 const products = [
-  { id: 1, name: 'Classic T-Shirt', price: 19.99, category: 'Clothing', image: '/placeholder.svg?height=200&width=200' },
-  { id: 2, name: 'Leather Wallet', price: 39.99, category: 'Accessories', image: '/placeholder.svg?height=200&width=200' },
-  { id: 3, name: 'Running Shoes', price: 89.99, category: 'Footwear', image: '/placeholder.svg?height=200&width=200' },
-  { id: 4, name: 'Wireless Earbuds', price: 129.99, category: 'Electronics', image: '/placeholder.svg?height=200&width=200' },
-  { id: 5, name: 'Denim Jeans', price: 59.99, category: 'Clothing', image: '/placeholder.svg?height=200&width=200' },
-  { id: 6, name: 'Smartwatch', price: 199.99, category: 'Electronics', image: '/placeholder.svg?height=200&width=200' },
+  { id: 1, name: 'Classy', price: 5.000, category: 'Hamburguesa', image: '../../public/hambur.png' },
+  { id: 2, name: 'Crispy', price: 39.99, category: 'Hamburguesa', image: '../../public/hambur.png' },
+  { id: 3, name: 'Chama', price: 89.99, category: 'Hamburguesa', image: '../../public/hambur.png' },
+  { id: 4, name: 'De Verga', price: 129.99, category: 'Hamburguesa', image: '../../public/hambur.png' },
+  { id: 5, name: 'Big Bum', price: 59.99, category: 'Hamburguesa', image: '/../../public/hambur.png' },
+  { id: 6, name: 'Patty Melt', price: 199.99, category: 'Hamburguesa', image: '../../public/hambur.png' },
 ]
 
 export default function Cart() {
-  const [sortBy, setSortBy] = useState('name')
+  const [sortBy] = useState('name')
   const [filterCategory, setFilterCategory] = useState('All')
   const [searchTerm, setSearchTerm] = useState('')
 
@@ -31,7 +31,7 @@ export default function Cart() {
   return (
     <>
     <div className="flex flex-row justify-between align-center w-screen p-3 bg-gebum-violet">
-      <span className="text-[1.3rem]">Gebum</span>
+      <span className="text-white font-extrabold text-[1.3rem]">Gebum</span>
       <ArrowLeftFromLine className="" color="white" size={30} />
     </div>
     <div className="container mx-auto px-4 py-8">
@@ -65,16 +65,22 @@ export default function Cart() {
       
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
         {filteredAndSortedProducts.map(product => (
-          <div key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden">
-            <img src={product.image} alt={product.name} className="w-full h-48 object-cover" />
-            <div className="p-4">
-              <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
-              <p className="text-gray-600 mb-2">{product.category}</p>
-              <p className="text-xl font-bold">${product.price.toFixed(2)}</p>
-              <button className="mt-4 w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition-colors">
-                Add to Cart
+          <div key={product.id} className="flex flex-col justify-between align-center bg-white rounded-lg shadow-md overflow-hidden">
+            <div className="flex flex-row justify-between align-middle">
+              <div className="p-4 mx-4">
+                <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
+                <p className="text-gray-600 mb-2">{product.category}</p>
+                <p className="text-xl font-bold">${product.price.toFixed(2)}</p>
+              </div>
+                <img src={product.image} alt={product.name} className="my-auto mx-4 h-[110px]" />
+            </div>
+            <div className="m-2">
+              <button className="m-auto w-full bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">
+                  Agregar
               </button>
             </div>
+            
+            
           </div>
         ))}
       </div>
