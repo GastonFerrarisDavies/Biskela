@@ -3,25 +3,33 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeftFromLine } from 'lucide-react';
 import { data } from '../mocks/data.js';
 import { CartTab } from '../components/cartTab.jsx';
+import { ModalCart } from '../components/ModalCart.jsx';
 
 
 export default function Products() {
+  //Filtro
   const [filter, setFilter] = useState('todos')
 
   const filtrar = (p) => (filter === "todos" || filter === p.category.toLowerCase())
 
+  //Modal
+  const [isOpen, setIsOpen] = useState(false);
+  const [pSelected, setPSelected] = useState(null);
+
+
+  //Navigate
   const navigate = useNavigate();
 
   const goHome = () => {
     navigate('/');
   };
 
-  const product = {
-    burger_name: "Crispy",
-    category: "Hamburguesa",
-    price: 6,
-    id: 3
-  }
+  //Handle
+  const handleClick = (unProducto) => {
+    setPSelected(unProducto);
+    setIsOpen(true);
+  };
+
 
   return (
     <>
@@ -61,7 +69,7 @@ export default function Products() {
               <img src='../../public/hambur.png' alt={product.name} className="my-auto mx-4 h-[110px]" />
           </div>
           <div className="m-2">
-            <button className="m-auto w-full bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">
+            <button onClick={() => handleClick(product)} className="m-auto w-full bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">
                 Agregar
             </button>
           </div>
@@ -69,6 +77,7 @@ export default function Products() {
         ))}
       </div>
       <CartTab/>
+      <ModalCart isOpen={isOpen} pSelected={pSelected} closeModal={ () => setIsOpen(false) } />
     </>
   )
 }
