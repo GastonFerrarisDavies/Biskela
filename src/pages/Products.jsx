@@ -64,7 +64,6 @@ export default function Products() {
             <div className="p-4 mx-4">
               <h2 className="text-lg font-semibold mb-2">{product.burger_name}</h2>
               <p className="text-gray-600 mb-2">{product.category}</p>
-              <p className="text-xl font-bold">${product.price.toFixed(2)}</p>
             </div>
               <img src='../../public/hambur.png' alt={product.name} className="my-auto mx-4 h-[110px]" />
           </div>

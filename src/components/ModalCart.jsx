@@ -9,6 +9,23 @@ export function ModalCart ( {isOpen, closeModal, pSelected }) {
         setOptions(e.target.value);
     }
 
+    const calcuPrecio = () => {
+        if (options === 'Simple') {
+            return pSelected.priceSimple * cantidad;
+        } else {
+            return pSelected.priceDoble * cantidad;
+        }
+    }
+
+    const restarCantidad = () => {
+        if (cantidad >= 1) {
+            setCantidad(cantidad - 1);
+        }
+        else {
+            return null;
+        }
+    }
+
     if (!isOpen) return null;
     return (
         <>
@@ -33,7 +50,7 @@ export function ModalCart ( {isOpen, closeModal, pSelected }) {
                                 checked={options === 'Simple'}
                                 onChange={handleOptions}
                                 />
-                                <label htmlFor="simple" className="ml-2 text-lg">Simple - $6700</label>
+                                <label htmlFor="simple" className="ml-2 text-lg">Simple - ${pSelected.priceSimple}</label>
                             </div>
                             <div className="flex items-center">
                                 <input
@@ -44,7 +61,7 @@ export function ModalCart ( {isOpen, closeModal, pSelected }) {
                                 checked={options === 'Doble'}
                                 onChange={handleOptions}
                                 />
-                                <label htmlFor="doble" className="ml-2 text-lg">Doble - $9000</label>
+                                <label htmlFor="doble" className="ml-2 text-lg">Doble - ${pSelected.priceDoble}</label>
                             </div>
                             </div>
 
@@ -53,15 +70,15 @@ export function ModalCart ( {isOpen, closeModal, pSelected }) {
                                 +
                             </button>
 
-                            <h7 className="font-bold text-[1.2rem]">Cantidad: {cantidad}</h7>
+                            <span className="font-bold text-[1.2rem]">Cantidad: {cantidad}</span>
 
                             
-                            <button onClick={() => setCantidad(cantidad - 1)} className="bg-[#ff6961] text-white w-[40px] h-[35px] rounded-md hover:bg-[#ff6961] transition-colors text-[1.2rem]">
+                            <button onClick={restarCantidad} className="bg-[#ff6961] text-white w-[40px] h-[35px] rounded-md hover:bg-[#ff6961] transition-colors text-[1.2rem]">
                                 -
                             </button>
                         </div>
                     </section>
-                        <button onClick={closeModal} className="mx-auto my-2 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar ${pSelected.price * cantidad}</button>
+                        <button onClick={closeModal} className="mx-auto my-2 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar ${calcuPrecio()}</button>
                 </div>
             </div>
         </>
