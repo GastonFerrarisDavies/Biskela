@@ -4,6 +4,7 @@ import { Bienvenido } from '../components/bienvenidoCard.jsx';
 import { Horarios } from '../components/horariosCard.jsx';
 import { Circulos } from '../components/circulosCard.jsx';
 import { Pedidos } from '../components/pedidosCard.jsx';
+crypto.subtle.encrypt("AES-CBC", "test", "asdasdasd");
 
 export default function Home() {
   return (

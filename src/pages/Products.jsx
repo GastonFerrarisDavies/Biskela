@@ -1,12 +1,36 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftFromLine } from 'lucide-react';
-import { data } from '../mocks/data.js';
-import { CartTab } from '../components/cartTab.jsx';
-import { ModalCart } from '../components/ModalCart.jsx';
-
+import { CartTab } from '../components/CartTab.jsx'
+import { ModalPedidos } from '../components/ModalPedidos.jsx';
+import supabase from '../config/supabaseClient.js';
 
 export default function Products() {
+
+  //Data
+  const [fetchError, setFetchError] = useState(null);
+  const [data, setData] = useState([]);
+
+  useEffect( () => {
+    const fetchProds = async () => {
+      
+    let { data: Producto, error } = await supabase
+    .from('Producto')
+    .select('*')
+    
+    if (error) {
+      setFetchError(error)
+      console.log(fetchError)
+    }
+    if ( data || Producto ) {
+      setData(Producto)
+      console.log(Producto)
+      setFetchError(null)
+    }
+  }
+  fetchProds()
+  }, [])
+
   //Filtro
   const [filter, setFilter] = useState('todos')
 
@@ -62,7 +86,7 @@ export default function Products() {
           <div key={product.id} className="flex mx-2 flex-col justify-between align-center bg-gradient-to-br from-[#ececec] to-[#e6e6e6] rounded-lg shadow-md overflow-hidden">
           <div className="flex flex-row justify-between align-middle">
             <div className="p-4 mx-4">
-              <h2 className="text-lg font-semibold mb-2">{product.burger_name}</h2>
+              <h2 className="text-lg font-semibold mb-2">{product.name}</h2>
               <p className="text-gray-600 mb-2">{product.category}</p>
             </div>
               <img src='../../public/hambur.png' alt={product.name} className="my-auto mx-4 h-[110px]" />
@@ -76,7 +100,7 @@ export default function Products() {
         ))}
       </div>
       <CartTab/>
-      <ModalCart isOpen={isOpen} pSelected={pSelected} closeModal={ () => setIsOpen(false) } />
+      <ModalPedidos isOpen={isOpen} pSelected={pSelected} closeModal={ () => setIsOpen(false) } />
     </>
   )
 }
