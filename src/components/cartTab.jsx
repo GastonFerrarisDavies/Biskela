@@ -1,12 +1,30 @@
-import { ShoppingCart } from 'lucide-react';
+import { ShoppingCart, CircleX } from 'lucide-react';
+import { useState } from 'react'
+
 export function CartTab () {
-    return (
-        <>
+    const [isOpen, setIsOpen] = useState(false)
+        if (!isOpen) return (
+
         <div className="fixed bottom-5 right-3">
-            <button className="p-4 rounded-[50%] bg-gradient-to-br from-[#414141] to-[#242424]">
-                <ShoppingCart className="" color="white" size={30} />
+                <button
+                onClick={() => setIsOpen(true)}
+                className="fixed bottom-4 right-4 p-2 bg-purple-600 text-white rounded-full shadow-lg"
+            >
+                <ShoppingCart className="w-6 h-6" />
             </button>
         </div>
-        </>
-    )
+        )
+        if (isOpen) return (
+            <div className={` fixed inset-0 transition-colors ${isOpen ? 'visible bg-black/50' : 'hidden'}`}>
+                
+                <div className="flex flex-col justify-center tems-center mx-5 my-11 bg-gradient-to-br from-[#ececec] to-[#e6e6e6] rounded-lg shadow-md">
+                    <div className="flex flex-row justify-around m-2">
+                        <h4 className="text-[2rem] font-extrabold">Tu Carrito</h4>
+                        <button onClick={() => setIsOpen(false)}>
+                        <CircleX color="#ff6961" size={25}/>
+                        </button>
+                    </div>
+                    <button className="mx-auto my-2 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar</button>
+                </div>
+            </div>)
 }

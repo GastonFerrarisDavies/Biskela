@@ -10,7 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@supabase/supabase-js": "^2.45.6",
+=======
+    "@supabase/supabase-js": "^2.47.8",
+    "dotenv": "^16.4.7",
+>>>>>>> 421941c2b4219465d2d69ed6a84cfdf91dcb92fb
     "lucide-react": "^0.441.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
