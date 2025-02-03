@@ -1,32 +1,35 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { ArrowLeftFromLine } from 'lucide-react';
-import { CartTab } from '../components/cartTab.jsx';
-import { ModalCart } from '../components/ModalCart.jsx';
+import { CartTab } from '../components/CartTab.jsx'
+import { ModalPedidos } from '../components/ModalPedidos.jsx';
 import supabase from '../config/supabaseClient.js';
 
-
 export default function Products() {
+
+  //Data
   const [fetchError, setFetchError] = useState(null);
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      let { data, error } = await supabase
-      .from('Producto')
-      .select('*')
-
-      if (error) {
-        setFetchError(error)
-        console.log(fetchError)
-      }
-      if (data) {
-        setData(data)
-        setFetchError(null)
-      }
+  useEffect( () => {
+    const fetchProds = async () => {
+      
+    let { data: Producto, error } = await supabase
+    .from('Producto')
+    .select('*')
+    
+    if (error) {
+      setFetchError(error)
+      console.log(fetchError)
     }
-    fetchData()
-    }, [])
+    if ( data || Producto ) {
+      setData(Producto)
+      console.log(Producto)
+      setFetchError(null)
+    }
+  }
+  fetchProds()
+  }, [])
 
   //Filtro
   const [filter, setFilter] = useState('todos')
@@ -97,7 +100,7 @@ export default function Products() {
         ))}
       </div>
       <CartTab/>
-      <ModalCart isOpen={isOpen} pSelected={pSelected} closeModal={ () => setIsOpen(false) } />
+      <ModalPedidos isOpen={isOpen} pSelected={pSelected} closeModal={ () => setIsOpen(false) } />
     </>
   )
 }
