@@ -10,11 +10,7 @@ export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
     }
 
     const calcuPrecio = () => {
-        if (options === 'Simple') {
-            return pSelected.priceSimple * cantidad;
-        } else {
-            return pSelected.priceDoble * cantidad;
-        }
+            return pSelected.price * cantidad;
     }
 
     const restarCantidad = () => {
@@ -39,40 +35,20 @@ export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
                             </button>
                         </div>
 
-                        <div className="flex flex-col my-5">
-                            <h2 className="text-[1.2rem] font-bold">Opciones (Obligatorio)</h2>
-                            <div className="flex items-center">
-                                <input
-                                type="radio"
-                                id="simple"
-                                name="option"
-                                value="Simple"
-                                checked={options === 'Simple'}
-                                onChange={handleOptions}
-                                />
-                                <label htmlFor="simple" className="ml-2 text-lg">Simple - ${pSelected.priceSimple}</label>
-                            </div>
-                            <div className="flex items-center">
-                                <input
-                                type="radio"
-                                id="doble"
-                                name="option"
-                                value="Doble"
-                                checked={options === 'Doble'}
-                                onChange={handleOptions}
-                                />
-                                <label htmlFor="doble" className="ml-2 text-lg">Doble - ${pSelected.priceDoble}</label>
-                            </div>
+                        <div className="flex flex-col items-center">
+
+                            <h7 className="text-[24px]">${pSelected.price}</h7>
                             <div className="flex flex-col mt-3 items-center justify-center">
                                 <p>Comentarios:</p>
                                 <input 
                                 type="text"
                                 name="comment"
-                                className="border-solid border-2 border-gray-700 rounded-md min-h-5" />
+                                placeholder="Sin queso..."
+                                className="border-solid border-2 border-gray-700 rounded-md min-h-[100px] items-start" />
                             </div>
                             </div>
 
-                        <div className="flex flex-row justify-around items-center gap-5 m-2">
+                        <div className="flex flex-row justify-around items-center gap-5 m-2 pt-3">
                             <button onClick={restarCantidad} className="bg-[#ff6961] text-white w-[40px] h-[35px] rounded-md hover:bg-[#ff6961] transition-colors text-[1.2rem]">
                                 -
                             </button>
@@ -85,7 +61,7 @@ export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
                             
                         </div>
                     </section>
-                        <button onClick={closeModal} className="mx-auto my-2 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar ${calcuPrecio()}</button>
+                        <button onClick={closeModal} className="mx-auto my-4 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar ${calcuPrecio()}</button>
                 </div>
             </div>
         </>

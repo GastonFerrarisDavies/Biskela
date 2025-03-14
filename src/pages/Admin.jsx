@@ -1,10 +1,11 @@
 import supabase from '../config/supabaseClient'
 import { useState, useEffect } from 'react'
 import { PencilLine, ArrowBigDownDash } from 'lucide-react';
+import { ModalCrear } from '../components/ModalCrear.jsx';
 
 
 export default function Admin() {
-
+  const [isOpen, setIsOpen] = useState(false);
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -32,10 +33,10 @@ export default function Admin() {
       </header>
       <div className="flex flex-col w-screen gap-2 p-2 h-[100vh] bg-gradient-to-b from-gebum-white to-gebum-gray">
 
-        <button onClick={() => handleClick(product)} className="my-2 w-full bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">
+        <button onClick={() => {setIsOpen(true)}} className="my-2 w-full bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">
                 Crear
         </button>
-        <button onClick={() => handleClick(product)} className="my-2 w-full bg-red-400 text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">
+        <button className="my-2 w-full bg-red-400 text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">
                 Eliminar
         </button>
         <div className="flex flex-row items-center justify-center bg-green-500 text-white p-2 text-center rounded-md">
@@ -54,6 +55,7 @@ export default function Admin() {
           ))}
         </div>
       </div>
+      <ModalCrear isOpen={isOpen} closeModal={ () => setIsOpen(false) } />
     </>
   );
 }
