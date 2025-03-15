@@ -59,7 +59,7 @@ export default function Products() {
     <>
       <header>
         <div className="flex flex-row justify-between align-center w-screen p-3 bg-gebum-violet">
-        <span className="text-white font-extrabold text-[1.3rem]" onClick={goHome} >Gebum</span>
+        <span className="text-white font-extrabold text-[1.3rem]" onClick={goHome} >Biskela</span>
         <ArrowLeftFromLine className="" onClick={() => navigate(-1)} color="white" size={30} />
         </div>
       </header>

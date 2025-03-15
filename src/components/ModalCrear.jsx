@@ -26,7 +26,7 @@ export function ModalCrear ({isOpen, closeModal}) {
                 setFormError(error)
             }
             else {
-                () => {closeModal}
+                {closeModal}
             }
         }
     }
