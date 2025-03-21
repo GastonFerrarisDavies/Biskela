@@ -1,10 +1,10 @@
-import { ShoppingCart, CircleX, Frown } from 'lucide-react';
+import { ShoppingCart, CircleX, Frown, CirclePlus, CircleMinus } from 'lucide-react';
 import { useState, useContext } from 'react'
 import { CartContext } from '../context/Cart.jsx';
 
 export function CartTab () {
     const [isOpen, setIsOpen] = useState(false)
-    const { cart, removeFromCart, addTocart } = useContext(CartContext);
+    const { cart, removeFromCart, addToCart } = useContext(CartContext);
         if (!isOpen) return (
 
         <div className="fixed bottom-5 right-3">
@@ -40,10 +40,12 @@ export function CartTab () {
                                     <p className="text-gray-600">{product.category}</p>
                                 </div>
                                 <div className="flex flex-row justify-around items-center gap-2">
-                                    <h4 className="text-lg font-semibold">${product.price}</h4>
-                                    <button onClick={() => {removeFromCart(product.id)}} className="bg-red-400 text-white p-2 rounded-md hover:bg-gebum-violet transition-colors">
-                                        Eliminar
-                                    </button>
+                                    <h4 className="text-lg font-semibold">${product.price * product.quantity}</h4>
+                                    <div className="flex gap-1">
+                                        <CircleMinus className="text-red-400" onClick={() => {removeFromCart(product.id)}}/>
+                                        <p className="text-[#000000] ">{product.quantity}</p>
+                                        <CirclePlus onClick={() => {addToCart(product, 1)}}/>
+                                    </div>
                                 </div>
                             </div>
                         )))}
