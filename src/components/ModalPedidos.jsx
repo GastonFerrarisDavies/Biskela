@@ -1,13 +1,10 @@
 import { CircleX } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
+import { CartContext } from '../context/Cart.jsx';
 
 export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
     const [cantidad, setCantidad] = useState(1);
-    const [options, setOptions] = useState('Simple');
-
-    const handleOptions = (e) => {
-        setOptions(e.target.value);
-    }
+    const { addToCart } = useContext(CartContext);
 
     const calcuPrecio = () => {
             return pSelected.price * cantidad;
@@ -24,7 +21,6 @@ export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
 
     if (!isOpen) return null;
     return (
-        <>
             <div className={` fixed inset-0 transition-colors ${isOpen ? 'visible bg-black/50' : 'hidden'}`}>
                 <div className="flex flex-col justify-center items-center mx-5 my-11 bg-gradient-to-br from-[#ececec] to-[#e6e6e6] rounded-lg shadow-md">
                     <section className="flex flex-col justify-between">
@@ -37,7 +33,6 @@ export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
 
                         <div className="flex flex-col items-center">
 
-                            <h7 className="text-[24px]">${pSelected.price}</h7>
                             <div className="flex flex-col mt-3 items-center justify-center">
                                 <p>Comentarios:</p>
                                 <input 
@@ -61,9 +56,11 @@ export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
                             
                         </div>
                     </section>
-                        <button onClick={closeModal} className="mx-auto my-4 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar ${calcuPrecio()}</button>
+                        <button onClick={() => {
+                            addToCart(pSelected);
+                            closeModal();
+                        }} className="mx-auto my-4 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar ${calcuPrecio()}</button>
                 </div>
             </div>
-        </>
     )
 }

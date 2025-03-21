@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeftFromLine } from 'lucide-react';
 import { CartTab } from '../components/CartTab.jsx'
 import { ModalPedidos } from '../components/ModalPedidos.jsx';
+import { CartProvider } from '../context/Cart';
 import supabase from '../config/supabaseClient.js';
 
 export default function Products() {
@@ -10,6 +11,7 @@ export default function Products() {
   //Data
   const [fetchError, setFetchError] = useState(null);
   const [data, setData] = useState([]);
+
 
   useEffect( () => {
     const fetchProds = async () => {
@@ -56,7 +58,8 @@ export default function Products() {
 
 
   return (
-    <>
+    <CartProvider>
+      <>
       <header>
         <div className="flex flex-row justify-between align-center w-screen p-3 bg-gebum-violet">
         <span className="text-white font-extrabold text-[1.3rem]" onClick={goHome} >Biskela</span>
@@ -102,6 +105,7 @@ export default function Products() {
       </div>
       <CartTab/>
       <ModalPedidos isOpen={isOpen} pSelected={pSelected} closeModal={ () => setIsOpen(false) } />
-    </>
+      </>
+    </CartProvider>
   )
 }
