@@ -22,6 +22,11 @@ export function ModalCrear ({isOpen, closeModal}) {
             .insert([
                 { name, category, price }
             ])
+            setName('');
+            setCategory('');
+            setPrice('');
+            closeModal();
+            alert('Producto creado con éxito');
             if (error) {
                 setFormError(error)
             }

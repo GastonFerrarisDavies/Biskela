@@ -54,6 +54,7 @@ export default function Products() {
   const handleClick = (unProducto) => {
     setPSelected(unProducto);
     setIsOpen(true);
+    setCantidad(1);
   };
 
 
@@ -86,7 +87,7 @@ export default function Products() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {data.filter((a) => filtrar(a)).map(product => (
-          <div key={product.id} className="flex mx-2 flex-col justify-between align-center bg-gradient-to-br from-[#ececec] to-[#e6e6e6] rounded-lg shadow-md overflow-hidden">
+          <div key={product.id} className="flex mx-2 flex-col justify-between align-center bg-gradient-to-br from-[#ececec] to-[#e6e6e6] rounded-lg shadow-sm shadow-[#1a1a1a] overflow-hidden">
           <div className="flex flex-row justify-between align-middle">
             <div className="p-4 mx-4">
               <h2 className="text-lg font-semibold mb-2">{product.name}</h2>

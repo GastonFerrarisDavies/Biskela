@@ -1,4 +1,4 @@
-import { ShoppingCart, CircleX, Frown, CirclePlus, CircleMinus } from 'lucide-react';
+import { ShoppingCart, CircleX, Frown, CirclePlus, CircleMinus, Trash2 } from 'lucide-react';
 import { useState, useContext } from 'react'
 import { CartContext } from '../context/Cart.jsx';
 
@@ -34,15 +34,15 @@ export function CartTab () {
                             </div>
                         ) : (
                         cart.map((product) => (
-                            <div key={product.id} className="flex flex-row justify-between items-center bg-gradient-to-br from-[#f5f5f5] to-[#e9e9e9] rounded-lg shadow-md p-2 m-1 max-h-[600px] overflow-hidden">
+                            <div key={product.id} className="flex flex-row justify-between items-center bg-gradient-to-br from-[#f5f5f5] to-[#e9e9e9] rounded-lg shadow-sm shadow-[#1a1a1a] p-2 m-1 max-h-[600px] overflow-hidden">
                                 <div className="flex flex-col">
                                     <h4 className="text-lg font-semibold">{product.name}</h4>
                                     <p className="text-gray-600">{product.category}</p>
                                 </div>
                                 <div className="flex flex-row justify-around items-center gap-2">
                                     <h4 className="text-lg font-semibold">${product.price * product.quantity}</h4>
-                                    <div className="flex gap-1">
-                                        <CircleMinus className="text-red-400" onClick={() => {removeFromCart(product.id)}}/>
+                                    <div className="flex items-center justify-between gap-2">
+                                        {(product.quantity === 1) ? <Trash2 className="text-red-400" onClick={() => {removeFromCart(product.id)}}/> : <CircleMinus onClick={() => {removeFromCart(product.id)}}/>}
                                         <p className="text-[#000000] ">{product.quantity}</p>
                                         <CirclePlus onClick={() => {addToCart(product, 1)}}/>
                                     </div>

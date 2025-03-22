@@ -59,6 +59,7 @@ export function ModalPedidos ( {isOpen, closeModal, pSelected }) {
                         <button onClick={() => {
                             addToCart(pSelected, cantidad);
                             closeModal();
+                            setCantidad(1);
                         }} className="mx-auto my-4 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Agregar ${calcuPrecio()}</button>
                 </div>
             </div>
