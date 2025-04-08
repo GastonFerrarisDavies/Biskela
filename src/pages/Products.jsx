@@ -54,7 +54,6 @@ export default function Products() {
   const handleClick = (unProducto) => {
     setPSelected(unProducto);
     setIsOpen(true);
-    setCantidad(1);
   };
 
 

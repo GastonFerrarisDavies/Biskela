@@ -1,8 +1,10 @@
 import { ShoppingCart, CircleX, Frown, CirclePlus, CircleMinus, Trash2 } from 'lucide-react';
 import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../context/Cart.jsx';
 
 export function CartTab () {
+    const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false)
     const { cart, removeFromCart, addToCart } = useContext(CartContext);
         if (!isOpen) return (
@@ -10,7 +12,7 @@ export function CartTab () {
         <div className="fixed bottom-5 right-3">
                 <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-4 right-4 p-2 bg-purple-600 text-white rounded-full shadow-lg"
+                className="fixed bottom-2 right-2 p-3 bg-gradient-to-br from-[#2f2f2f] to-[#232323] text-white rounded-full shadow-lg"
             >
                 <ShoppingCart className="w-6 h-6" />
             </button>
@@ -50,7 +52,7 @@ export function CartTab () {
                             </div>
                         )))}
                     </div>
-                    <button className="mx-auto my-2 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors">Finalizar Pedido</button>
+                    <button className="mx-auto my-2 w-[80%] bg-gebum-violet text-white py-2 rounded-md hover:bg-gebum-violet transition-colors" onClick={() => {navigate('/FinPedido')}}>Finalizar Pedido</button>
                 </div>
             </div>)
 }
