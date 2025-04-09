@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useNavigate } from 'react-router-dom';
 import supabase from "../config/supabaseClient"
 
 export default function LoginPage() {
@@ -9,6 +10,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [success, setSuccess] = useState(false)
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault()
@@ -21,11 +23,9 @@ export default function LoginPage() {
         password,
       })
 
-      if (error) {
-        setError(error.message)
-      } else {
-        setSuccess(true)
-      }
+      setSuccess(true)
+      navigate('/')
+
     } catch (err) {
       setError("Ocurrió un error durante el inicio de sesión")
     } finally {
@@ -61,7 +61,7 @@ export default function LoginPage() {
                   type="email"
                   autoComplete="email"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-gebum-violet focus:border-gebum-violet focus:z-10 sm:text-sm"
                   placeholder="Correo electrónico"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -77,7 +77,7 @@ export default function LoginPage() {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
+                  className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-gebum-violet focus:border-gebum-violet focus:z-10 sm:text-sm"
                   placeholder="Contraseña"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -99,7 +99,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gebum-violet focus:outline-none focus:ring-2 focus:ring-offset-2"
               >
                 {loading ? "Cargando..." : "Iniciar sesión"}
               </button>

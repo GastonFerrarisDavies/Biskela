@@ -12,17 +12,15 @@ export default function Registro() {
     setError(null);
     setSuccess(null);
 
-    const { error: signUpError } = await supabase.auth.signUp({
+    try { await supabase.auth.signUp({
       email,
       password,
     });
-
-    if (signUpError) {
-      setError(signUpError.message);
-    } else {
-      setSuccess('Check your email for verification.');
-      setEmail('');
-      setPassword('');
+    setSuccess('Hemos enviado un mail de confirmación.');
+    setEmail('');
+    setPassword('');
+  } catch (error) {
+      setError(error.message);
     }
   };
 

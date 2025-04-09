@@ -6,6 +6,7 @@ import Admin from './pages/Admin';
 import FinPedido from './pages/FinPedido';
 import InicioSesion from './pages/InicioSesion';
 import Registro from './pages/Registro';
+import NotFound from './pages/NotFound';
 import { CartProvider } from './context/Cart';
 import { AuthProvider } from './context/sesion';
 import './App.css'
@@ -24,6 +25,7 @@ export function App() {
         <Route path="/FinPedido" element={<FinPedido />} />
         <Route path="/InicioSesion" element={<InicioSesion />} />
         <Route path="/Registro" element={<Registro />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
     </>
