@@ -39,7 +39,7 @@ export default function Registro() {
               className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
               id="email"
               type="email"
-              placeholder="Email"
+              placeholder="tumail@gmail.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -64,7 +64,7 @@ export default function Registro() {
               className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               type="submit"
             >
-                Iniciar Sesión
+                Crea tu cuenta.
             </button>
           </div>
         </form>

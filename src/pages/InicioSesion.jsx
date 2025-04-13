@@ -95,13 +95,18 @@ export default function LoginPage() {
               </div>
             )}
 
-            <div>
+            <div className="flex items-center flex-col gap-1">
               <button
                 type="submit"
                 disabled={loading}
                 className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gebum-violet focus:outline-none focus:ring-2 focus:ring-offset-2"
               >
                 {loading ? "Cargando..." : "Iniciar sesión"}
+              </button>
+              <button onClick={() => navigate("/registro")}
+                className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-400 focus:outline-none focus:ring-2 focus:ring-offset-2"
+              >
+                No tienes una cuenta? Crea una.
               </button>
             </div>
           </form>

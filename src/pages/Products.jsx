@@ -4,6 +4,8 @@ import { ArrowLeftFromLine } from 'lucide-react';
 import { CartTab } from '../components/CartTab.jsx'
 import { ModalPedidos } from '../components/ModalPedidos.jsx';
 import { CartProvider } from '../context/Cart';
+import { User } from 'lucide-react';
+
 import supabase from '../config/supabaseClient.js';
 
 export default function Products() {
@@ -63,7 +65,10 @@ export default function Products() {
       <header>
         <div className="flex flex-row justify-between align-center w-screen p-3 bg-gebum-violet">
         <span className="text-white font-extrabold text-[1.3rem]" onClick={goHome} >Biskela</span>
-        <ArrowLeftFromLine className="" onClick={() => navigate(-1)} color="white" size={30} />
+        <div className="flex flex-row gap-2">
+          <User className="text-white" size={30} onClick={() => navigate('/InicioSesion')} />
+          <ArrowLeftFromLine className="" onClick={() => navigate(-1)} color="white" size={30} />
+        </div>
         </div>
       </header>
       <div className="container m-auto px-4 pt-3">
