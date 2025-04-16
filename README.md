@@ -1,1 +1,1 @@
-Proyecto Gebum e-commerce comidas.
+App web para automatizar proceso de compras online de comida.
